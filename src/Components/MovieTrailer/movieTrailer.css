@@ -1,0 +1,146 @@
+.wrapper__trailer {
+	background-image: linear-gradient(
+		120deg,
+		rgb(1, 2, 14),
+		rgb(9, 8, 66),
+		rgb(1, 2, 14)
+	);
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	position: fixed;
+	overflow-x: scroll;
+}
+
+.wrapper__trailer::-webkit-scrollbar {
+	display: none;
+}
+
+.trailer-box {
+	width: 80%;
+	height: auto;
+	background: rgba(0, 0, 0, 0.342);
+	margin-top: 150px;
+	margin-bottom: 50px;
+	position: absolute;
+}
+
+.trailer-box_firstSection {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.firstSection-middle {
+	width: 2px;
+	background-color: #ffffff3b;
+	height: auto;
+}
+
+.firstSection-left {
+	width: 50%;
+	height: 500px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.firstSection-right {
+	width: 50%;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.firstSection-right > img {
+	width: 60%;
+	margin-left: 50px;
+}
+
+.firstSection-right > div {
+	display: flex;
+	margin: 30px 50px;
+	flex-direction: column;
+	justify-content: left;
+	color: var(--color-white);
+}
+
+.firstSection-right-topic {
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+
+.firstSection-right-overview {
+	font-size: 1rem;
+	font-weight: 300;
+	margin-top: 20px;
+	line-height: 1.5rem;
+}
+
+.trailer-box_secondSection {
+	color: var(--color-white);
+	margin: 50px 5%;
+}
+
+.secondSection-reviews {
+	font-size: 1.5rem;
+}
+
+.secondSection-reviews-box div {
+	background-color: rgba(240, 248, 255, 0.09);
+	margin: 10px 0;
+	padding: 20px;
+	border-radius: 10px;
+}
+
+.secondSection-reviews-box div p {
+	font-family: cursive;
+	font-size: 1rem;
+	font-weight: 300;
+	font-style: italic;
+	color: rgba(255, 255, 255, 0.642);
+}
+
+.secondSection-reviews-box div h2 {
+	font-size: 1rem;
+	font-weight: 500;
+	margin-bottom: 5px;
+	color: rgb(0, 120, 240);
+}
+
+.secondSection-reviews-box div h4 {
+	font-size: 0.8rem;
+	font-weight: 400;
+	margin: 5px 5px;
+	color: rgba(255, 255, 255, 0.501);
+	text-align: right;
+}
+
+.secondSection-addReview {
+	margin-top: 80px;
+	color: #ffffffa8;
+}
+
+.secondSection-addReview-textArea {
+	background-color: rgba(255, 255, 255, 0.15);
+	border: none;
+	outline: none;
+	padding: 10px;
+	color: #ffffff;
+	width: 100%;
+	margin-top: 20px;
+	height: 100px;
+	border-radius: 8px;
+}
+
+.secondSection-addReview-button {
+	padding: 10px 30px;
+	border: none;
+	border-radius: 8px;
+	background-color: rgb(0, 102, 204);
+	margin-top: 5px;
+	color: #ffffff;
+	font-weight: 500;
+}
