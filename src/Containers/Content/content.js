@@ -49,70 +49,83 @@ const Content = () => {
     }
 
     const submitMovie = () => {
-        const name_movie = document.getElementById("name_movie").value;
-        const original_language_movie = document.getElementById("original_language_movie").value;
-        const release_date_movie = document.getElementById("release_date_movie").value;
-        const trailer_movie = document.getElementById("trailer_movie").value;
-        const backdrop_path_movie = document.getElementById("backdrop_path_movie").value;
-        const poster_path_movie = document.getElementById("poster_path_movie").value;
-        const vote_average_movie = document.getElementById("vote_average_movie").value;
-        const adult_movie = document.getElementById("adult_movie").value;
-        const overview_movie = document.getElementById("overview_movie").value;
-        const watch_time_movie = document.getElementById("watch_time_movie").value;
-
+        const name_movie = document.getElementById("name_movie").value.trim();
+        const original_language_movie = document.getElementById("original_language_movie").value.trim();
+        const release_date_movie = document.getElementById("release_date_movie").value.trim();
+        const trailer_movie = document.getElementById("trailer_movie").value.trim();
+        const backdrop_path_movie = document.getElementById("backdrop_path_movie").value.trim();
+        const poster_path_movie = document.getElementById("poster_path_movie").value.trim();
+        const vote_average_movie = document.getElementById("vote_average_movie").value.trim();
+        const adult_movie = document.getElementById("adult_movie").value.trim();
+        const overview_movie = document.getElementById("overview_movie").value.trim();
+        const watch_time_movie = document.getElementById("watch_time_movie").value.trim();
+    
         const genres = [];
-
-        if(document.getElementById("adventure_movie").checked){
-            genres.push("Adventure");
+    
+        if (document.getElementById("adventure_movie").checked) genres.push("Adventure");
+        if (document.getElementById("action_movie").checked) genres.push("Action");
+        if (document.getElementById("drama_movie").checked) genres.push("Drama");
+        if (document.getElementById("sci_fi_movie").checked) genres.push("Sci Fi");
+        if (document.getElementById("crime_movie").checked) genres.push("Crime");
+        if (document.getElementById("horror_movie").checked) genres.push("Horror");
+    
+        // 🔍 **Validation**
+        if (
+            !name_movie || !original_language_movie || !release_date_movie ||
+            !trailer_movie || !backdrop_path_movie || !poster_path_movie ||
+            !vote_average_movie || !adult_movie || !overview_movie || !watch_time_movie
+        ) {
+            alert("All fields must be filled.");
+            return;
         }
-        if(document.getElementById("action_movie").checked){
-            genres.push("Action");
+    
+        if (isNaN(vote_average_movie) || vote_average_movie < 0 || vote_average_movie > 10) {
+            alert("Vote average must be a number between 0 and 10.");
+            return;
         }
-        if(document.getElementById("drama_movie").checked){
-            genres.push("Drama");
+    
+        if (isNaN(watch_time_movie) || watch_time_movie <= 0) {
+            alert("Watch time must be a positive number.");
+            return;
         }
-        if(document.getElementById("sci_fi_movie").checked){
-            genres.push("Sci Fi");
+    
+        if (genres.length === 0) {
+            alert("At least one genre must be selected.");
+            return;
         }
-        if(document.getElementById("crime_movie").checked){
-            genres.push("Crime");
-        }
-        if(document.getElementById("horror_movie").checked){
-            genres.push("Horror");
-        }
-
+    
         const saveMovie = async () => {
-            fetch('http://localhost:8081/addMovie',{
-              method: 'POST',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                name: name_movie,
-                overview: overview_movie,
-                genres: genres,
-                backdrop_path: backdrop_path_movie,
-                poster_path: poster_path_movie,
-                adult: adult_movie,
-                original_language: original_language_movie,
-                release_date: release_date_movie,
-                vote_average: vote_average_movie,
-                trailer: trailer_movie,
-                watch_time: watch_time_movie
-              })
-            })
-        }
-
+            fetch("http://localhost:8081/addMovie", {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: name_movie,
+                    overview: overview_movie,
+                    genres: genres,
+                    backdrop_path: backdrop_path_movie,
+                    poster_path: poster_path_movie,
+                    adult: adult_movie,
+                    original_language: original_language_movie,
+                    release_date: release_date_movie,
+                    vote_average: vote_average_movie,
+                    trailer: trailer_movie,
+                    watch_time: watch_time_movie,
+                }),
+            });
+        };
+    
         const sendContentEmail = () => {
             if (!fetchUsers) return;
-        
-            const emailPromises = fetchUsers.map(user => {
+    
+            const emailPromises = fetchUsers.map((user) => {
                 return fetch(`http://localhost:8081/contentUpdate/${user.email}`, {
-                    method: 'POST',
+                    method: "POST",
                     headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
                         subject: "New Movie Uploaded",
@@ -124,43 +137,64 @@ const Content = () => {
                         release_date: release_date_movie,
                         vote_average: vote_average_movie,
                         trailer: trailer_movie,
-                    })
+                    }),
                 });
             });
-        
+    
             Promise.all(emailPromises)
-                .then(responses => {
-                    // handle responses if needed
+                .then((responses) => {
                     console.log("All emails sent successfully");
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error("Error sending emails:", error);
                 });
         };
-
+    
         saveMovie();
         sendContentEmail();
-
+    
         alert("Successfully added the Movie");
-        
+    
         window.location.reload();
-    }
+    };
+    
 
     const submitSeries = () => {
-        var name_series = document.getElementById("name_series").value;
-        var original_language_series = document.getElementById("original_language_series").value;
-        var release_date_series = document.getElementById("release_date_series").value;
-        var trailer_series = document.getElementById("trailer_series").value;
-        var backdrop_path_series = document.getElementById("backdrop_path_series").value;
-        var poster_path_series = document.getElementById("poster_path_series").value;
-        var vote_average_series = document.getElementById("vote_average_series").value;
-        var adult_series = document.getElementById("adult_series").value;
-        var overview_series = document.getElementById("overview_series").value;
-        var num_of_seasons = document.getElementById("num_of_seasons").value;
-        var num_of_episodes = document.getElementById("num_of_episodes").value;
-
+        var name_series = document.getElementById("name_series").value.trim();
+        var original_language_series = document.getElementById("original_language_series").value.trim();
+        var release_date_series = document.getElementById("release_date_series").value.trim();
+        var trailer_series = document.getElementById("trailer_series").value.trim();
+        var backdrop_path_series = document.getElementById("backdrop_path_series").value.trim();
+        var poster_path_series = document.getElementById("poster_path_series").value.trim();
+        var vote_average_series = document.getElementById("vote_average_series").value.trim();
+        var adult_series = document.getElementById("adult_series").value.trim();
+        var overview_series = document.getElementById("overview_series").value.trim();
+        var num_of_seasons = document.getElementById("num_of_seasons").value.trim();
+        var num_of_episodes = document.getElementById("num_of_episodes").value.trim();
+        
+        if (!name_series || !original_language_series || !release_date_series || !trailer_series || !backdrop_path_series || 
+            !poster_path_series || !vote_average_series || !adult_series || !overview_series || !num_of_seasons || !num_of_episodes) {
+            alert("All fields are required. Please fill out all fields.");
+            return;
+        }
+    
+        if (isNaN(vote_average_series) || vote_average_series < 0 || vote_average_series > 10) {
+            alert("Vote average must be a number between 0 and 10.");
+            return;
+        }
+    
+        if (isNaN(num_of_seasons) || num_of_seasons <= 0) {
+            alert("Number of seasons must be a positive number.");
+            return;
+        }
+    
+        if (isNaN(num_of_episodes) || num_of_episodes <= 0) {
+            alert("Number of episodes must be a positive number.");
+            return;
+        }
+        
         const genres = [];
-
+    
         if(document.getElementById("adventure_series").checked){
             genres.push("Adventure");
         }
@@ -179,7 +213,12 @@ const Content = () => {
         if(document.getElementById("horror_series").checked){
             genres.push("Horror");
         }
-
+    
+        if (genres.length === 0) {
+            alert("Please select at least one genre.");
+            return;
+        }
+    
         const saveSeries = async () => {
             fetch('http://localhost:8081/addSeries',{
               method: 'POST',
@@ -203,11 +242,10 @@ const Content = () => {
               })
             })
         }
-
+    
         const sendContentEmail = () => {
             if (!fetchUsers) return;
-            
-        
+    
             const emailPromises = fetchUsers.map(user => {
                 return fetch(`http://localhost:8081/contentUpdate/${user.email}`, {
                     method: 'POST',
@@ -228,91 +266,123 @@ const Content = () => {
                     })
                 });
             });
-        
+    
             Promise.all(emailPromises)
                 .then(responses => {
-                    // handle responses if needed
                     console.log("All emails sent successfully");
                 })
                 .catch(error => {
                     console.error("Error sending emails:", error);
                 });
         };
-
+    
         saveSeries();
         sendContentEmail();
         
         alert("Successfully added the TV Series");
-
         window.location.reload();
     }
+    
 
     const submitDoc = () => {
-        const name_doc = document.getElementById("name_doc").value;
-        const original_language_doc = document.getElementById("original_language_doc").value;
-        const release_date_doc = document.getElementById("release_date_movie").value;
-        const trailer_doc = document.getElementById("trailer_doc").value;
-        const backdrop_path_doc = document.getElementById("backdrop_path_doc").value;
-        const poster_path_doc = document.getElementById("poster_path_doc").value;
-        const vote_average_doc = document.getElementById("vote_average_doc").value;
+        // Get form values
+        const name_doc = document.getElementById("name_doc").value.trim();
+        const original_language_doc = document.getElementById("original_language_doc").value.trim();
+        const release_date_doc = document.getElementById("release_date_doc").value.trim();
+        const trailer_doc = document.getElementById("trailer_doc").value.trim();
+        const backdrop_path_doc = document.getElementById("backdrop_path_doc").value.trim();
+        const poster_path_doc = document.getElementById("poster_path_doc").value.trim();
+        const vote_average_doc = document.getElementById("vote_average_doc").value.trim();
         const adult_doc = document.getElementById("adult_doc").value;
-        const overview_doc = document.getElementById("overview_doc").value;
-        const watch_time_doc = document.getElementById("watch_time_doc").value;
-
+        const overview_doc = document.getElementById("overview_doc").value.trim();
+        const watch_time_doc = document.getElementById("watch_time_doc").value.trim();
+    
+        // Validate required fields
+        if (!name_doc || !original_language_doc || !release_date_doc || !overview_doc || !vote_average_doc || !watch_time_doc) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+    
+        // Validate vote average (must be a number between 0 and 10)
+        if (isNaN(vote_average_doc) || vote_average_doc < 0 || vote_average_doc > 10) {
+            alert("Vote Average must be a number between 0 and 10.");
+            return;
+        }
+    
+        // Validate release date format (YYYY-MM-DD)
+        const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+        if (!datePattern.test(release_date_doc)) {
+            alert("Please enter a valid release date in YYYY-MM-DD format.");
+            return;
+        }
+    
+        // Validate watch time (must be a number greater than 0)
+        if (isNaN(watch_time_doc) || watch_time_doc <= 0) {
+            alert("Watch time must be a positive number.");
+            return;
+        }
+    
+        // Collect selected genres
         const genres = [];
-
-        if(document.getElementById("adventure_doc").checked){
-            genres.push("Adventure");
+        if (document.getElementById("adventure_doc").checked) genres.push("Adventure");
+        if (document.getElementById("action_doc").checked) genres.push("Action");
+        if (document.getElementById("drama_doc").checked) genres.push("Drama");
+        if (document.getElementById("sci_fi_doc").checked) genres.push("Sci Fi");
+        if (document.getElementById("crime_doc").checked) genres.push("Crime");
+        if (document.getElementById("horror_doc").checked) genres.push("Horror");
+    
+        // Validate at least one genre is selected
+        if (genres.length === 0) {
+            alert("Please select at least one genre.");
+            return;
         }
-        if(document.getElementById("action_doc").checked){
-            genres.push("Action");
-        }
-        if(document.getElementById("drama_doc").checked){
-            genres.push("Drama");
-        }
-        if(document.getElementById("sci_fi_doc").checked){
-            genres.push("Sci Fi");
-        }
-        if(document.getElementById("crime_doc").checked){
-            genres.push("Crime");
-        }
-        if(document.getElementById("horror_doc").checked){
-            genres.push("Horror");
-        }
-
+    
+        // Save the documentary
         const saveDoc = async () => {
-            fetch('http://localhost:8081/addDoc',{
-              method: 'POST',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                name: name_doc,
-                overview: overview_doc,
-                genres: genres,
-                backdrop_path: backdrop_path_doc,
-                poster_path: poster_path_doc,
-                adult: adult_doc,
-                original_language: original_language_doc,
-                release_date: release_date_doc,
-                vote_average: vote_average_doc,
-                trailer: trailer_doc,
-                watch_time: watch_time_doc
-              })
-            })
-        }
-
-        const sendContentEmail = () => {
-            if (!fetchUsers) return;
-            
-        
-            const emailPromises = fetchUsers.map(user => {
-                return fetch(`http://localhost:8081/contentUpdate/${user.email}`, {
-                    method: 'POST',
+            try {
+                const response = await fetch("http://localhost:8081/addDoc", {
+                    method: "POST",
                     headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        name: name_doc,
+                        overview: overview_doc,
+                        genres: genres,
+                        backdrop_path: backdrop_path_doc,
+                        poster_path: poster_path_doc,
+                        adult: adult_doc,
+                        original_language: original_language_doc,
+                        release_date: release_date_doc,
+                        vote_average: vote_average_doc,
+                        trailer: trailer_doc,
+                        watch_time: watch_time_doc,
+                    }),
+                });
+    
+                if (!response.ok) {
+                    throw new Error("Failed to add documentary");
+                }
+    
+                alert("Successfully added the Documentary");
+                window.location.reload();
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred while adding the documentary.");
+            }
+        };
+    
+        // Send email notifications
+        const sendContentEmail = () => {
+            if (!fetchUsers || fetchUsers.length === 0) return;
+    
+            const emailPromises = fetchUsers.map((user) =>
+                fetch(`http://localhost:8081/contentUpdate/${user.email}`, {
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
                         subject: "New Documentary Uploaded",
@@ -324,27 +394,19 @@ const Content = () => {
                         release_date: release_date_doc,
                         vote_average: vote_average_doc,
                         trailer: trailer_doc,
-                    })
-                });
-            });
-        
-            Promise.all(emailPromises)
-                .then(responses => {
-                    // handle responses if needed
-                    console.log("All emails sent successfully");
+                    }),
                 })
-                .catch(error => {
-                    console.error("Error sending emails:", error);
-                });
+            );
+    
+            Promise.all(emailPromises)
+                .then(() => console.log("All emails sent successfully"))
+                .catch((error) => console.error("Error sending emails:", error));
         };
-
+    
         saveDoc();
         sendContentEmail();
-
-        alert("Successfully added the Documentary");
-        
-        window.location.reload();
-    }
+    };
+    
 
     return(
         <div className="wrapper__content">
@@ -354,6 +416,7 @@ const Content = () => {
                 <div className="container-box">
                     <label>Choose the content</label><br></br>
                     <select id="inputContent" onChange={checkContent}>
+                        
                         <option>Check one of content</option>
                         <option>Movie</option>
                         <option>TV Series</option>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import seriesImages from "../../assets/series/seriesImages";
-import '../../Components/MovieTrailer/movieTrailer.css'
-import { useParams } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import './tvSeriesTrailer.css';
+import { useParams } from "react-router-dom";
 
 const TVSeriesTrailer = () => {
     const {series_id } = useParams();
@@ -69,7 +68,7 @@ const TVSeriesTrailer = () => {
                 },
                 body: JSON.stringify({
                   contentId: series_id,
-                  user_id: loggedUser.guser_id,
+                  user_id: loggedUser?.guser_id,
                   reviewText: reviewInput,
                 })
               })
@@ -88,11 +87,20 @@ const TVSeriesTrailer = () => {
             <div className="trailer-box">
                 <div className="trailer-box_firstSection">
                     <div className="firstSection-left">
-                        <iframe width="550" height="320" src={series.trailer} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                        <iframe
+                         width="800"
+                         height="450"
+                          src={series.trailer}
+                           title="YouTube video player"
+                            frameBorder="0"
+                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              referrerPolicy="strict-origin-when-cross-origin" 
+                              allowFullScreen>
+                              </iframe>
                     </div>
                     <div className="firstSection-middle"></div>
                     <div className="firstSection-right">
-                        <img src={seriesImages[series.backdrop_path]} alt="Back Drop"/>
+                        <img src={series.backdrop_path} alt="Back Drop"/>
                         <div>
                             <p className="firstSection-right-topic">{series.name}</p>
                             <p className="firstSection-right-overview">{series.overview}</p>

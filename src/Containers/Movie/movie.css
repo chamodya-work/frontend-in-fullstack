@@ -18,13 +18,14 @@
 	flex-direction: column;
 	align-items: center;
 	position: fixed;
+	padding-bottom: 100px; /* Increased bottom padding */
 }
 
 .movie-heading {
 	font-size: 2rem;
 	font-weight: 600;
 	color: var(--color-blue);
-	margin-top: 180px;
+	margin-top: 100px;
 	margin-bottom: 60px;
 }
 
@@ -35,9 +36,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border-radius: 15px; /* Rounded borders */
+	overflow: hidden;
 }
 
-.movie_scroll-wrapper>div:nth-child(2) {
+.movie_scroll-wrapper > div:nth-child(2) {
 	height: 100%;
 	width: 40%;
 	pointer-events: none;
@@ -47,7 +50,7 @@
 	background-image: linear-gradient(90deg, rgb(2, 4, 32), rgba(0, 0, 0, 0));
 }
 
-.movie_scroll-wrapper>div:last-child {
+.movie_scroll-wrapper > div:last-child {
 	height: 100%;
 	width: 40%;
 	pointer-events: none;
@@ -64,20 +67,22 @@
 	overflow: scroll;
 	display: flex;
 	align-items: center;
+	border-radius: 15px; /* Rounded borders */
 }
 
 .scroll-content::-webkit-scrollbar {
 	display: none;
 }
 
-.scroll-content>img {
+.scroll-content > img {
 	height: 90%;
 	width: auto;
 	margin: 0 10px;
 	transition: 0.5s;
+	border-radius: 10px; /* Rounded borders for images */
 }
 
-.scroll-content>img:hover {
+.scroll-content > img:hover {
 	scale: 110%;
 	opacity: 1;
 	box-shadow: 0 0 20px var(--color-blue);
@@ -86,6 +91,7 @@
 .movie-trailer {
 	display: block;
 	margin-bottom: 50px;
+	border-radius: 10px; /* Rounded borders */
 }
 
 @keyframes fadein {
