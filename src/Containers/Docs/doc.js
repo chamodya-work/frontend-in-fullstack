@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./doc.css"
 import Navbar from "../../Components/Navbar/Navbar";
-import docImages from "../../assets/documentry/docImages";
 import { useNavigate } from "react-router-dom";
+import docImages from "../../assets/documentry/docImages";
 
 const Docs = () => {
     const navigate = useNavigate();
@@ -13,7 +13,6 @@ const Docs = () => {
             try {
                 const result = await fetch('http://localhost:8081/getAllDocs');
                 setDocs(await result.json());
-                console.log(docs);
             } catch (error) {
                 console.log(error);
             }
@@ -30,7 +29,7 @@ const Docs = () => {
                 
                 <div className="scroll-content">
                 {docs.map(doc => (
-                        <img src={docImages[doc.poster_path]} alt={docImages[doc.name]} onClick={() => {navigate(`/docTrailer/${doc.doc_id}`)}}/>
+                        <img src={doc.poster_path} alt={docImages[doc.name]} onClick={() => {navigate(`/docTrailer/${doc.doc_id}`)}}/>
                     ))}
                 </div>
                 <div></div>

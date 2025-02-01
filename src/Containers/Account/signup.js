@@ -77,10 +77,18 @@ const SignUp = () => {
     }
   }
 
+  const closePage = () => {
+    navigate(-2); // Goes back to the previous page
+  }
+
+  
+
   return (
     <div className='wrapper__create'>
         
         <div className='create-box'>
+
+        <button className='close-btn' onClick={closePage}>X</button>
             <form>
                 <label className='login-box-label'>SIGN UP</label>
                 <input required className='login-box-userInputs' type='text' placeholder='Enter your name' id='name'></input>

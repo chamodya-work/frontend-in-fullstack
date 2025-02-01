@@ -29,7 +29,7 @@ const TVSeries = () => {
                 
                 <div className="scroll-content">
                 {series.map(series => (
-                        <img src={seriesImages[series.poster_path]} alt={seriesImages[series.name]} onClick={() => {navigate(`/seriesTrailer/${series.series_id}`)}}/>
+                        <img src={series.poster_path} alt={seriesImages[series.name]} onClick={() => {navigate(`/seriesTrailer/${series.series_id}`)}}/>
                     ))}
                 </div>
                 <div></div>
