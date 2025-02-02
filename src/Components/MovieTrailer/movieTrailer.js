@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import './movieTrailer.css';
 import { useParams } from 'react-router-dom';
-import movieImages from "../../assets/movie/movieImages";
+
 
 const MovieTrailer = () => {
     const { movie_id } = useParams();
@@ -90,8 +90,8 @@ const MovieTrailer = () => {
                 <div className="trailer-box_firstSection">
                     <div className="firstSection-left">
                         <iframe
-                            width="550"
-                            height="320"
+                            width="800"
+                            height="450"
                             src={movie.trailer}
                             title="YouTube video player"
                             frameBorder="0"
@@ -102,7 +102,7 @@ const MovieTrailer = () => {
                     </div>
                     <div className="firstSection-middle"></div>
                     <div className="firstSection-right">
-                        <img src={movieImages[movie.backdrop_path]} alt="Back Drop" />
+                       <img src={movie.backdrop_path} alt="Backdrop" />
                         <div>
                             <p className="firstSection-right-topic">{movie.name}</p>
                             <p className="firstSection-right-overview">{movie.overview}</p>
