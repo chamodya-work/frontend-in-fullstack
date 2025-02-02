@@ -72,12 +72,13 @@
 
 .navBar ul li:hover {
     color: var(--color-blue);
-    text-shadow: 0 0 5px var(--color-blue);
+    text-shadow: 0 0 10px var(--color-blue);  /* Increased blur radius for a more spread-out shadow */
     border: none;
 }
 
+
 :root {
-    --color-blue: #1db954;  /* Added a blue color variable for hover effect */
+    --color-blue: #297eff;  /* Added a blue color variable for hover effect */
 }
 
 /* Responsiveness */
