@@ -9,18 +9,22 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
+  // UseEffect to handle user state when component mounts
   useEffect(() => {
     const loggedUser = localStorage.getItem("loggedUser");
     if (loggedUser && loggedUser !== "null") {
       setUser(JSON.parse(loggedUser));
+    } else {
+      setUser(null);
     }
-  }, []);
+  }, []); // Only run once when the component is mounted
 
   const handleLogout = () => {
     localStorage.setItem("accountLogged", false);
     localStorage.setItem("loggedUser", null);
     localStorage.setItem("userEmail", null);
-    navigate("/");
+    setUser(null); // Update the user state immediately
+    navigate("/"); // Navigate to home or login page
   };
 
   const handleLogin = () => {
@@ -74,7 +78,9 @@ const Navbar = () => {
           {/* Logo and Text Above Buttons */}
           <div className="offcanvas-logo">
             <img src={FlimFlix} alt="App Logo" className="app-logo" />
-            <p className="mt-3">Welcome to FlimFlix! Your gateway to movies and TV shows.</p>
+            <p className="mt-3">
+              Welcome to FlimFlix! Your gateway to movies and TV shows.
+            </p>
           </div>
 
           {/* Login/Logout Button */}
