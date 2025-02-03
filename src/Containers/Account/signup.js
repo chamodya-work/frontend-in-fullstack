@@ -7,6 +7,7 @@ const SignUp = () => {
   const [gUser, setGUser] = useState();
   const [email, setEmail] = useState('');
 
+   // Function to save new user data to the backend
   const saveUserData = async (name, email, password) => {
     fetch('http://localhost:8081/addGUser',{
       method: 'POST',
@@ -22,6 +23,7 @@ const SignUp = () => {
     })
   }
 
+  // useEffect to fetch user data whenever email state changes
   useEffect(() => {
     const fetchUserData = async () => {
       try {
