@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './Banner.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPlus } from '@fortawesome/free-solid-svg-icons';
-import images from '../../assets/bannerImages';
 import { useNavigate } from 'react-router-dom';
 
 const Banner = () => {

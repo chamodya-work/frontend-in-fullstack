@@ -78,10 +78,13 @@ const Login = () => {
   return (
     <div className="wrapper__login">
       <div className="login-box">
-        {/* Cross Button */}
-        <button className="close-btn" onClick={closePage}>
-          X
-        </button>
+        {/* Bootstrap Close Button */}
+        <button
+          type="button"
+          className="btn-close btn-close-white close-btn"
+          onClick={closePage}
+          aria-label="Close"
+        ></button>
 
         <form>
           <label className="login-box-label">LOGIN</label>
