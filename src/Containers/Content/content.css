@@ -9,7 +9,7 @@
 }
 
 .wrapper__content::-webkit-scrollbar {
-    display: none;
+    display:flex;
 }
 
 .content_container {
