@@ -9,26 +9,26 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
+  // UseEffect to handle user state when component mounts
   useEffect(() => {
     const loggedUser = localStorage.getItem("loggedUser");
     if (loggedUser && loggedUser !== "null") {
       setUser(JSON.parse(loggedUser));
+    } else {
+      setUser(null);
     }
-  }, []);
+  }, []); // Only run once when the component is mounted
 
   const handleLogout = () => {
     localStorage.setItem("accountLogged", false);
     localStorage.setItem("loggedUser", null);
     localStorage.setItem("userEmail", null);
-    navigate("/");
+    setUser(null); // Update the user state immediately
+    navigate("/"); // Navigate to home or login page
   };
 
   const handleLogin = () => {
     navigate("/login");
-  };
-
-  const handleAdminPanel = () => {
-    navigate("/admin-panel"); // Redirect to the admin panel
   };
 
   return (
@@ -87,22 +87,9 @@ const Navbar = () => {
           <ul className="navbar-nav justify-content-center flex-grow-1 pe-3">
             <li className="nav-item">
               {user && user.name !== "Guest" ? (
-                <>
-                  <button
-                    className="btn btn-danger w-50"
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </button>
-                  {user.role === "admin" && (
-                    <button
-                      className="btn btn-warning w-50 mt-2"
-                      onClick={handleAdminPanel}
-                    >
-                      Admin Panel
-                    </button>
-                  )}
-                </>
+                <button className="btn btn-danger w-50" onClick={handleLogout}>
+                  Logout
+                </button>
               ) : (
                 <button className="btn btn-primary w-50" onClick={handleLogin}>
                   Login
