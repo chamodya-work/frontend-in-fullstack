@@ -27,10 +27,6 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  const handleAdminPanel = () => {
-    navigate("/admin-panel"); // Redirect to the admin panel
-  };
-
   return (
     <div className="navBar">
       <div className="navBar__image">
@@ -78,31 +74,16 @@ const Navbar = () => {
           {/* Logo and Text Above Buttons */}
           <div className="offcanvas-logo">
             <img src={FlimFlix} alt="App Logo" className="app-logo" />
-            <p className="mt-3">
-              Welcome to FlimFlix! Your gateway to movies and TV shows.
-            </p>
+            <p className="mt-3">Welcome to FlimFlix! Your gateway to movies and TV shows.</p>
           </div>
 
           {/* Login/Logout Button */}
           <ul className="navbar-nav justify-content-center flex-grow-1 pe-3">
             <li className="nav-item">
               {user && user.name !== "Guest" ? (
-                <>
-                  <button
-                    className="btn btn-danger w-50"
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </button>
-                  {user.role === "admin" && (
-                    <button
-                      className="btn btn-warning w-50 mt-2"
-                      onClick={handleAdminPanel}
-                    >
-                      Admin Panel
-                    </button>
-                  )}
-                </>
+                <button className="btn btn-danger w-50" onClick={handleLogout}>
+                  Logout
+                </button>
               ) : (
                 <button className="btn btn-primary w-50" onClick={handleLogin}>
                   Login
