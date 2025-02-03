@@ -48,7 +48,7 @@ body {
 .create-box {
 	background-color: rgba(255, 255, 255, 0.1);
 	padding: 50px 80px;
-	width: 350px;
+	width: 450px;
 	height: auto;
 	border-radius: 20px;
 	display: flex;
@@ -151,13 +151,11 @@ body {
 	background: none;
 	border: none;
 	cursor: pointer;
-	color: #00fd22;
   }
   
-  .close-btn:hover {
-	color: red;
-  }
-  
+ .close-btn:hover {
+  color: red;
+}
 
 @keyframes fadein {
 	to {

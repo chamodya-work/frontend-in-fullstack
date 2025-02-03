@@ -9,8 +9,6 @@ import Content from "./Containers/Content/content.js";
 import TVSeriesTrailer from "./Components/TVSeriesTrailer/tvSeriesTrailer.js";
 import DocTrailer from "./Components/DocTrailer/docTrailer.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Logout from "./Containers/logout/logout.js";
-
 
 function App() {
   return (
@@ -30,7 +28,6 @@ function App() {
           />
           <Route path="/docTrailer/:doc_id" element={<DocTrailer />} />
           <Route path="/addContent" element={<Content />} />
-          <Route path="/logout" element={<Logout />} />
         </Routes>
       </Router>
     </div>

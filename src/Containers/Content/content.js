@@ -408,263 +408,551 @@ const Content = () => {
     };
     
 
-    return(
-        <div className="wrapper__content">
-            <Navbar/>
-            <div className="content_container">
-                <h1>Welcome <span>{user?.name || "guest"}</span></h1>
-                <div className="container-box">
-                    <label>Choose the content</label><br></br>
-                    <select id="inputContent" onChange={checkContent}>
-                        
-                        <option>Check one of content</option>
-                        <option>Movie</option>
-                        <option>TV Series</option>
-                        <option>Documentary</option>
-                    </select>
-                    <div className="container-box_addMovie">
-                        <form>
-                            <table className="addMovie-outerTable">
-                                <tr>
-                                    <table className="addMovie-innerTable">
-                                        <tr>
-                                            <td>
-                                                <label>Movie name</label><br></br>
-                                                <input type="text" id="name_movie" requirede></input>
-                                            </td>
-                                            <td>
-                                                <label>Language</label><br></br>
-                                                <input type="text" id="original_language_movie" required></input>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>Release Date</label><br></br>
-                                                <input type="text" id="release_date_movie"required></input>
-                                            </td>
-                                            <td>
-                                                <label>Trailer</label><br></br>
-                                                <input type="text" id="trailer_movie" required></input>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>Backdrop path</label><br></br>
-                                                <input type="text" id="backdrop_path_movie" required></input>
-                                            </td>
-                                            <td>
-                                                <label>Poster Path</label><br></br>
-                                                <input type="text" id="poster_path_movie" required></input>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>Watch Time</label><br></br>
-                                                <input type="text" id="watch_time_movie" required></input>
-                                            </td>
-                                            <td>
-                                                <label>Vote Average</label><br></br>
-                                                <input type="text" id="vote_average_movie" required></input>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <label>Adult</label><br></br>
-                                                <select id="adult_movie">
-                                                    <option selected value="choose">Choose True or False</option>
-                                                    <option value="true">True</option>
-                                                    <option value="false">False</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <br></br>
-                                            <label className="genreLabel">Genres</label><br></br><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="adventure_movie" value="Adventure"/><label>Adventure</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="action_movie" value="Action"/><label>Action</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="drama_movie" value="Drama"/><label>Drama</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="sci_fi_movie" value="Sci Fi"/><label>Sci Fi</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="crime_movie" value="Crime"/><label>Crime</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="horror_movie" value="Horror"/><label>Horror</label><br></br>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </tr>
-                                <tr>
-                                    <br></br>
-                                    <label>Overview</label><br></br>
-                                    <textarea id="overview_movie"></textarea>
-                                </tr>
-                            </table>
-                            <input type="button" id="button_movie" value="Add Movie" onClick={submitMovie}></input>
-                        </form>
-                    </div>
-                    <div className="container-box_addSeries">
-                    <form>
-                            <table className="addMovie-outerTable">
-                                <tr>
-                                    <table className="addMovie-innerTable">
-                                        <tr>
-                                            <td>
-                                                <label>TV Series name</label><br></br>
-                                                <input type="text" id="name_series" requirede></input>
-                                            </td>
-                                            <td>
-                                                <label>Language</label><br></br>
-                                                <input type="text" id="original_language_series" required></input>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>Release Date</label><br></br>
-                                                <input type="text" id="release_date_series"required></input>
-                                            </td>
-                                            <td>
-                                                <label>Trailer</label><br></br>
-                                                <input type="text" id="trailer_series" required></input>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>Backdrop path</label><br></br>
-                                                <input type="text" id="backdrop_path_series" required></input>
-                                            </td>
-                                            <td>
-                                                <label>Poster Path</label><br></br>
-                                                <input type="text" id="poster_path_series" required></input>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>Vote Average</label><br></br>
-                                                <input type="text" id="vote_average_series" required></input>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>Number of Seasons</label><br></br>
-                                                <input type="number" id="num_of_seasons" required></input>
-                                            </td>
-                                            <td>
-                                                <label>Number of Episodes</label><br></br>
-                                                <input type="number" id="num_of_episodes" required></input>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <label>Adult</label><br></br>
-                                                <select id="adult_series">
-                                                <option selected value="choose">Choose True or False</option>
-                                                    <option value="true">True</option>
-                                                    <option value="false">False</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                        <td>
-                                            <br></br>
-                                            <label className="genreLabel">Genres</label><br></br><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="adventure_series" value="Adventure"/><label>Adventure</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="action_series" value="Action"/><label>Action</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="drama_series" value="Drama"/><label>Drama</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="sci_fi_series" value="Sci Fi"/><label>Sci Fi</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="crime_series" value="Crime"/><label>Crime</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="horror_series" value="Horror"/><label>Horror</label><br></br>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </tr>
-                                <tr>
-                                    <br></br>
-                                    <label>Overview</label><br></br>
-                                    <textarea id="overview_series"></textarea>
-                                </tr>
-                            </table>
-                            <input type="button" id="button_series" value="Add Series" onClick={submitSeries}></input>
-                        </form>
-                    </div>
-                    <div className="container-box_addDoc">
-                    <form>
-                            <table className="addMovie-outerTable">
-                                <tr>
-                                    <table className="addMovie-innerTable">
-                                        <tr>
-                                            <td>
-                                                <label>Document name</label><br></br>
-                                                <input type="text" id="name_doc" requirede></input>
-                                            </td>
-                                            <td>
-                                                <label>Language</label><br></br>
-                                                <input type="text" id="original_language_doc" required></input>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>Release Date</label><br></br>
-                                                <input type="text" id="release_date_doc"required></input>
-                                            </td>
-                                            <td>
-                                                <label>Trailer</label><br></br>
-                                                <input type="text" id="trailer_doc" required></input>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>Backdrop path</label><br></br>
-                                                <input type="text" id="backdrop_path_doc" required></input>
-                                            </td>
-                                            <td>
-                                                <label>Poster Path</label><br></br>
-                                                <input type="text" id="poster_path_doc" required></input>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>Watch Time</label><br></br>
-                                                <input type="text" id="watch_time_doc" required></input>
-                                            </td>
-                                            <td>
-                                                <label>Vote Average</label><br></br>
-                                                <input type="text" id="vote_average_doc" required></input>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <label>Adult</label><br></br>
-                                                <select id="adult_doc">
-                                                    <option selected value="choose">Choose True or False</option>
-                                                    <option value="true">True</option>
-                                                    <option value="false">False</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <br></br>
-                                            <label className="genreLabel">Genres</label><br></br><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="adventure_doc" value="Adventure"/><label>Adventure</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="action_doc" value="Action"/><label>Action</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="drama_doc" value="Drama"/><label>Drama</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="sci_fi_doc" value="Sci Fi"/><label>Sci Fi</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="crime_doc" value="Crime"/><label>Crime</label><br></br>
-                                            <input className="checkInput" type="checkbox" name="genre" id="horror_doc" value="Horror"/><label>Horror</label><br></br>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </tr>
-                                <tr>
-                                    <br></br>
-                                    <label>Overview</label><br></br>
-                                    <textarea id="overview_doc"></textarea>
-                                </tr>
-                            </table>
-                            <input type="button" id="button_doc" value="Add Documentary" onClick={submitDoc}></input>
-                        </form>
-                    </div>
-                </div>
+    return (
+      <div className="wrapper__content">
+        <Navbar />
+        <div className="content_container">
+          <h1>
+            Welcome <span>{user?.name || "guest"}</span>
+          </h1>
+          <div className="container-box">
+            <label>Choose the content</label>
+            <br></br>
+            <select id="inputContent" onChange={checkContent}>
+              <option>Check one of content</option>
+              <option>Movie</option>
+              <option>TV Series</option>
+              <option>Documentary</option>
+            </select>
+            <div className="container-box_addMovie">
+              <form>
+                <table className="addMovie-outerTable">
+                  <tr>
+                    <table className="addMovie-innerTable">
+                      <tr>
+                        <td>
+                          <label>Movie name</label>
+                          <br></br>
+                          <input type="text" id="name_movie" requirede></input>
+                        </td>
+                        <td>
+                          <label>Language</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="original_language_movie"
+                            required
+                          ></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label>Release Date</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="release_date_movie"
+                            required
+                          ></input>
+                        </td>
+                        <td>
+                          <label>Trailer</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="trailer_movie"
+                            required
+                          ></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label>Backdrop path</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="backdrop_path_movie"
+                            required
+                          ></input>
+                        </td>
+                        <td>
+                          <label>Poster Path</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="poster_path_movie"
+                            required
+                          ></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label>Watch Time</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="watch_time_movie"
+                            required
+                          ></input>
+                        </td>
+                        <td>
+                          <label>Vote Average</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="vote_average_movie"
+                            required
+                          ></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label>Adult</label>
+                          <br></br>
+                          <select id="adult_movie">
+                            <option selected value="choose">
+                              Choose True or False
+                            </option>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <br></br>
+                          <label className="genreLabel">Genres</label>
+                          <br></br>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="adventure_movie"
+                            value="Adventure"
+                          />
+                          <label>Adventure</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="action_movie"
+                            value="Action"
+                          />
+                          <label>Action</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="drama_movie"
+                            value="Drama"
+                          />
+                          <label>Drama</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="sci_fi_movie"
+                            value="Sci Fi"
+                          />
+                          <label>Sci Fi</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="crime_movie"
+                            value="Crime"
+                          />
+                          <label>Crime</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="horror_movie"
+                            value="Horror"
+                          />
+                          <label>Horror</label>
+                          <br></br>
+                        </td>
+                      </tr>
+                    </table>
+                  </tr>
+                  <tr>
+                    <br></br>
+                    <label>Overview</label>
+                    <br></br>
+                    <textarea id="overview_movie"></textarea>
+                  </tr>
+                </table>
+                <input
+                  type="button"
+                  id="button_movie"
+                  value="Add Movie"
+                  onClick={submitMovie}
+                ></input>
+              </form>
             </div>
+            <div className="container-box_addSeries">
+              <form>
+                <table className="addMovie-outerTable">
+                  <tr>
+                    <table className="addMovie-innerTable">
+                      <tr>
+                        <td>
+                          <label>TV Series name</label>
+                          <br></br>
+                          <input type="text" id="name_series" requirede></input>
+                        </td>
+                        <td>
+                          <label>Language</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="original_language_series"
+                            required
+                          ></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label>Release Date</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="release_date_series"
+                            required
+                          ></input>
+                        </td>
+                        <td>
+                          <label>Trailer</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="trailer_series"
+                            required
+                          ></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label>Backdrop path</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="backdrop_path_series"
+                            required
+                          ></input>
+                        </td>
+                        <td>
+                          <label>Poster Path</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="poster_path_series"
+                            required
+                          ></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label>Vote Average</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="vote_average_series"
+                            required
+                          ></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label>Number of Seasons</label>
+                          <br></br>
+                          <input
+                            type="number"
+                            id="num_of_seasons"
+                            required
+                          ></input>
+                        </td>
+                        <td>
+                          <label>Number of Episodes</label>
+                          <br></br>
+                          <input
+                            type="number"
+                            id="num_of_episodes"
+                            required
+                          ></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label>Adult</label>
+                          <br></br>
+                          <select id="adult_series">
+                            <option selected value="choose">
+                              Choose True or False
+                            </option>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <br></br>
+                          <label className="genreLabel">Genres</label>
+                          <br></br>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="adventure_series"
+                            value="Adventure"
+                          />
+                          <label>Adventure</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="action_series"
+                            value="Action"
+                          />
+                          <label>Action</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="drama_series"
+                            value="Drama"
+                          />
+                          <label>Drama</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="sci_fi_series"
+                            value="Sci Fi"
+                          />
+                          <label>Sci Fi</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="crime_series"
+                            value="Crime"
+                          />
+                          <label>Crime</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="horror_series"
+                            value="Horror"
+                          />
+                          <label>Horror</label>
+                          <br></br>
+                        </td>
+                      </tr>
+                    </table>
+                  </tr>
+                  <tr>
+                    <br></br>
+                    <label>Overview</label>
+                    <br></br>
+                    <textarea id="overview_series"></textarea>
+                  </tr>
+                </table>
+                <input
+                  type="button"
+                  id="button_series"
+                  value="Add Series"
+                  onClick={submitSeries}
+                ></input>
+              </form>
+            </div>
+            <div className="container-box_addDoc">
+              <form>
+                <table className="addMovie-outerTable">
+                  <tr>
+                    <table className="addMovie-innerTable">
+                      <tr>
+                        <td>
+                          <label>Document name</label>
+                          <br></br>
+                          <input type="text" id="name_doc" requirede></input>
+                        </td>
+                        <td>
+                          <label>Language</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="original_language_doc"
+                            required
+                          ></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label>Release Date</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="release_date_doc"
+                            required
+                          ></input>
+                        </td>
+                        <td>
+                          <label>Trailer</label>
+                          <br></br>
+                          <input type="text" id="trailer_doc" required></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label>Backdrop path</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="backdrop_path_doc"
+                            required
+                          ></input>
+                        </td>
+                        <td>
+                          <label>Poster Path</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="poster_path_doc"
+                            required
+                          ></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label>Watch Time</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="watch_time_doc"
+                            required
+                          ></input>
+                        </td>
+                        <td>
+                          <label>Vote Average</label>
+                          <br></br>
+                          <input
+                            type="text"
+                            id="vote_average_doc"
+                            required
+                          ></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label>Adult</label>
+                          <br></br>
+                          <select id="adult_doc">
+                            <option selected value="choose">
+                              Choose True or False
+                            </option>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <br></br>
+                          <label className="genreLabel">Genres</label>
+                          <br></br>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="adventure_doc"
+                            value="Adventure"
+                          />
+                          <label>Adventure</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="action_doc"
+                            value="Action"
+                          />
+                          <label>Action</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="drama_doc"
+                            value="Drama"
+                          />
+                          <label>Drama</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="sci_fi_doc"
+                            value="Sci Fi"
+                          />
+                          <label>Sci Fi</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="crime_doc"
+                            value="Crime"
+                          />
+                          <label>Crime</label>
+                          <br></br>
+                          <input
+                            className="checkInput"
+                            type="checkbox"
+                            name="genre"
+                            id="horror_doc"
+                            value="Horror"
+                          />
+                          <label>Horror</label>
+                          <br></br>
+                        </td>
+                      </tr>
+                    </table>
+                  </tr>
+                  <tr>
+                    <br></br>
+                    <label>Overview</label>
+                    <br></br>
+                    <textarea id="overview_doc"></textarea>
+                  </tr>
+                </table>
+                <input
+                  type="button"
+                  id="button_doc"
+                  value="Add Documentary"
+                  onClick={submitDoc}
+                ></input>
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
     );
 }
 
