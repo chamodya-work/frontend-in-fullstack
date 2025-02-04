@@ -5,9 +5,8 @@ import { faPlay, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
-  const [movie, setMovie] = useState(null); // Initialize with null to ensure proper check
+  const [movie, setMovie] = useState(null);
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,15 +20,11 @@ const Banner = () => {
         const movies = await moviesRes.json();
         const users = await usersRes.json();
 
-        // Select a random movie
         const randomMovie = movies[Math.floor(Math.random() * movies.length)];
         setMovie(randomMovie);
         setUsers(users);
-
-        setLoading(false); // Once data is fetched, stop loading
       } catch (error) {
         console.log(error);
-        setLoading(false); // Stop loading in case of error
       }
     };
 
@@ -46,11 +41,6 @@ const Banner = () => {
       });
     }
   }, [users]);
-
-  if (loading || !movie) {
-    // Ensure movie data is available before rendering
-    return <div>Loading...</div>; // Replace with a loading spinner or animation if needed
-  }
 
   return (
     <div className="banner_wrapper">
