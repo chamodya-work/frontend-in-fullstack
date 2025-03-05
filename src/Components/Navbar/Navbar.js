@@ -37,7 +37,7 @@ const Navbar = () => {
         <img src={FlimFlix} alt="FlimFlix Logo" />
       </div>
       <ul>
-        <li onClick={() => navigate("/")}>Home</li>
+        <li onClick={() => navigate("/home")}>Home</li>
         <li onClick={() => navigate("/movies")}>Movies</li>
         <li onClick={() => navigate("/series")}>TV Series</li>
         <li onClick={() => navigate("/docs")}>Documentaries</li>
