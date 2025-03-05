@@ -8,14 +8,20 @@ import MovieTrailer from "./Components/MovieTrailer/movieTrailer.js";
 import Content from "./Containers/Content/content.js";
 import TVSeriesTrailer from "./Components/TVSeriesTrailer/tvSeriesTrailer.js";
 import DocTrailer from "./Components/DocTrailer/docTrailer.js";
+import Neutral from "./Components/NeutralPage/neutral.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ScrollToTop from "./Components/ScrollToTop.js";
+
+
 
 function App() {
   return (
+    
     <div className="App">
       <Router>
+        <ScrollToTop/>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/movies" element={<Movie />} />
@@ -28,6 +34,7 @@ function App() {
           />
           <Route path="/docTrailer/:doc_id" element={<DocTrailer />} />
           <Route path="/addContent" element={<Content />} />
+          <Route path="/" element={<Neutral />} />
         </Routes>
       </Router>
     </div>

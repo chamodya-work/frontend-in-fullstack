@@ -59,7 +59,7 @@ const Login = () => {
         let loggedUser = JSON.stringify(GUser);
         localStorage.setItem("loggedUser", loggedUser);
         localStorage.setItem("userEmail", GUser.email);
-        navigate("/");
+        navigate("/home");
       } else if (GUser.email === email) {
         alert("Wrong Password..!");
       }
@@ -72,7 +72,8 @@ const Login = () => {
 
   // Function to close the page and go back to the previous page
   const closePage = () => {
-    navigate(-1); // Goes back to the previous page
+    navigate('/'); 
+    window.scrollTo(0, 0);// Goes back to the previous page
   };
 
   return (

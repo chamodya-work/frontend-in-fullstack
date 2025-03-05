@@ -8,9 +8,7 @@
 
 }
 
-.wrapper__content::-webkit-scrollbar {
-    display:flex;
-}
+
 
 .content_container {
     display: flex;
