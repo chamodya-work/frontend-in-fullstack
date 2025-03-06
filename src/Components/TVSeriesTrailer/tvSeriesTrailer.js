@@ -93,6 +93,28 @@ const TVSeriesTrailer = () => {
       }
     };
 
+<<<<<<< HEAD
+=======
+        if(reviewInput === null){
+            alert("Please enter a review first...!");
+        }
+        else{
+            fetch('http://localhost:8081/addReview',{
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  contentId: series_id,
+                  user_id: loggedUser?.guser_id,
+                  reviewText: reviewInput,
+                })
+              })
+              window.location.reload();
+        }
+    }
+>>>>>>> 27c7a8099d01ead33fa55841bcd8b08004baefe3
 
     const formatDate = (dateString) => {
         const options = { year: "numeric", month: "long", day: "numeric"}
@@ -100,6 +122,7 @@ const TVSeriesTrailer = () => {
     }
 
     return (
+<<<<<<< HEAD
       <div className="wrapper__trailer">
         <Navbar />
         <div className="trailer-box">
@@ -115,6 +138,50 @@ const TVSeriesTrailer = () => {
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               ></iframe>
+=======
+        <div className="wrapper__trailer">
+            <Navbar />
+            <div className="trailer-box">
+                <div className="trailer-box_firstSection">
+                    <div className="firstSection-left">
+                        <iframe
+                         width="800"
+                         height="450"
+                          src={series.trailer}
+                           title="YouTube video player"
+                            frameBorder="0"
+                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              referrerPolicy="strict-origin-when-cross-origin" 
+                              allowFullScreen>
+                              </iframe>
+                    </div>
+                    <div className="firstSection-middle"></div>
+                    <div className="firstSection-right">
+                        <img src={series.backdrop_path} alt="Back Drop"/>
+                        <div>
+                            <p className="firstSection-right-topic">{series.name}</p>
+                            <p className="firstSection-right-overview">{series.overview}</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="trailer-box_secondSection">
+                    <h1 className="secondSection-reviews">Reviews</h1>
+                    <div className="secondSection-reviews-box">
+                        {reviews.map((review) => (
+                            <div key={review.id}>
+                                <h2>{userMap[review.user_id]?.name || 'Unknown User'}</h2>
+                                <p>"{review.reviewText}"</p>
+                                <h4>{formatDate(review.timeStamp)}</h4>
+                            </div>
+                        ))}
+                    </div>
+                    <h2 className="secondSection-addReview secondSection-reviews">Add a Review</h2>
+                    <form>
+                        <textarea className="secondSection-addReview-textArea" id="reviewInput"></textarea>
+                        <input className="secondSection-addReview-button" type='button' value="Review" onClick={saveReview}></input>
+                    </form>
+                </div>
+>>>>>>> 27c7a8099d01ead33fa55841bcd8b08004baefe3
             </div>
             <div className="firstSection-middle"></div>
             <div className="firstSection-right">

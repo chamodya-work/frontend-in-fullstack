@@ -74,11 +74,15 @@
 	display: none;
 }
 
+<<<<<<< HEAD
 /* Improved effect for images sliding from left to right */
+=======
+>>>>>>> 27c7a8099d01ead33fa55841bcd8b08004baefe3
 .scroll-content > img {
 	height: 90%;
 	width: auto;
 	margin: 0 10px;
+<<<<<<< HEAD
 	transition: 0.5s ease-in-out;
 	border-radius: 10px; /* Rounded borders for images */
 	opacity: 0;
@@ -132,6 +136,12 @@
 }
 
 /* Hover effect to zoom in and add a shadow */
+=======
+	transition: 0.5s;
+	border-radius: 10px; /* Rounded borders for images */
+}
+
+>>>>>>> 27c7a8099d01ead33fa55841bcd8b08004baefe3
 .scroll-content > img:hover {
 	scale: 110%;
 	opacity: 1;

@@ -162,6 +162,22 @@ body {
   color: white; /* Ensure it's visible */
 }
 
+.close-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 20px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: #00fd22;
+  }
+  
+  .close-btn:hover {
+	color: red;
+  }
+  
+
 @keyframes fadein {
   to {
     opacity: 1;

@@ -1,4 +1,5 @@
 * {
+<<<<<<< HEAD
   margin: 0;
   padding: 0;
   box-sizing: border-box; /* Added box-sizing for better control of layout */
@@ -108,10 +109,92 @@ body {
   margin-top: 0px;
   font-size: 1.1rem;
   color: var(--color-light-gray);
+=======
+    margin: 0;
+    padding: 0;
+}
+
+.navBar {
+    height: 12vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+}
+
+.navBar__image {
+    height: 250px;
+    width: 250px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.navBar__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* Ensures the image maintains its aspect ratio */
+}
+
+.navBar__user {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-right: 5%;  /* Adjusted margin for better spacing */
+}
+
+.navBar__user div img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    z-index: 3;
+}
+
+.navBar__user div {
+    display: flex;
+    color: #c8c6cf;
+    align-items: center;
+    text-wrap: nowrap;
+    cursor: pointer;
+}
+
+.navBar__user div p {
+    margin-left: 15px;
+}
+
+.navBar ul {
+    list-style: none;  /* Added to remove default bullet points */
+    display: flex;  /* Flex for a horizontal layout */
+}
+
+.navBar ul li {
+    display: inline-block;
+    color: #858585;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin: 0 30px;
+    transition-duration: 0.5s;
+    font-family: "Roboto", sans-serif;
+    cursor: pointer;
+}
+
+.navBar ul li:hover {
+    color: var(--color-blue);
+    text-shadow: 0 0 5px var(--color-blue);
+    border: none;
+}
+
+:root {
+    --color-blue: #1db954;  /* Added a blue color variable for hover effect */
+>>>>>>> 27c7a8099d01ead33fa55841bcd8b08004baefe3
 }
 
 /* Responsiveness */
 @media (max-width: 768px) {
+<<<<<<< HEAD
   .navBar {
     flex-direction: column; /* Stack items vertically on small screens */
     align-items: flex-start; /* Align items to the left */
@@ -136,4 +219,17 @@ body {
     font-size: 1rem;
     margin: 10px 0; /* Adjusted for spacing */
   }
+=======
+    .navBar ul li {
+        font-size: 1rem;
+        margin: 0 15px;
+    }
+    .navBar__image {
+        height: 200px;
+        width: 200px;
+    }
+    .navBar__user {
+        margin-right: 3%;
+    }
+>>>>>>> 27c7a8099d01ead33fa55841bcd8b08004baefe3
 }

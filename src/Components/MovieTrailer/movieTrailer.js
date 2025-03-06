@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
-import "./movieTrailer.css";
-import { useParams } from "react-router-dom";
+import './movieTrailer.css';
+import { useParams } from 'react-router-dom';
+import movieImages from "../../assets/movie/movieImages";
 
 const MovieTrailer = () => {
   const { movie_id } = useParams();
@@ -104,71 +105,52 @@ const MovieTrailer = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  return (
-    <div className="wrapper__trailer">
-      <Navbar />
-      <div className="trailer-box">
-        <div className="trailer-box_firstSection">
-          <div className="firstSection-left">
-            <iframe
-              width="800"
-              height="450"
-              src={movie.trailer}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
-          </div>
-          <div className="firstSection-middle"></div>
-          <div className="firstSection-right">
-            <img src={movie.backdrop_path} alt="Backdrop" />
-            <div>
-              <p className="firstSection-right-topic">{movie.name}</p>
-              <p className="firstSection-right-overview">{movie.overview}</p>
+    return (
+        <div className="wrapper__trailer">
+            <Navbar />
+            <div className="trailer-box">
+                <div className="trailer-box_firstSection">
+                    <div className="firstSection-left">
+                        <iframe
+                            width="550"
+                            height="320"
+                            src={movie.trailer}
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
+                    <div className="firstSection-middle"></div>
+                    <div className="firstSection-right">
+                        <img src={movieImages[movie.backdrop_path]} alt="Back Drop" />
+                        <div>
+                            <p className="firstSection-right-topic">{movie.name}</p>
+                            <p className="firstSection-right-overview">{movie.overview}</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="trailer-box_secondSection">
+                    <h1 className="secondSection-reviews">Reviews</h1>
+                    <div className="secondSection-reviews-box">
+                        {reviews.map((review) => (
+                            <div key={review.id}>
+                                <h2>{userMap[review.user_id]?.name || 'Unknown User'}</h2>
+                                <p>"{review.reviewText}"</p>
+                                <h4>{formatDate(review.timeStamp)}</h4>
+                            </div>
+                        ))}
+                    </div>
+                    <h2 className="secondSection-addReview secondSection-reviews">Add a Review</h2>
+                    <form>
+                        <textarea className="secondSection-addReview-textArea" id="reviewInput"></textarea>
+                        <input className="secondSection-addReview-button" type='button' value="Review" onClick={saveReview}></input>
+                    </form>
+                </div>
             </div>
-          </div>
         </div>
-        <div className="trailer-box_secondSection">
-          <h1 className="secondSection-reviews">Reviews</h1>
-          <div className="secondSection-reviews-box">
-            {reviews.map((review) => (
-              <div key={review.id}>
-                <h2>{userMap[review.user_id]?.name || "Unknown User"}</h2>
-                <p>"{review.reviewText}"</p>
-                <h4>{formatDate(review.timeStamp)}</h4>
-
-                {loggedUser?.guser_id === review.user_id && (
-                  <button
-                    className="delete-review-button"
-                    onClick={() => deleteReview(review.review_id)}
-                  >
-                    Delete
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
-          <h2 className="secondSection-addReview secondSection-reviews">
-            Add a Review
-          </h2>
-          <form>
-            <textarea
-              className="secondSection-addReview-textArea"
-              id="reviewInput"
-            ></textarea>
-            <input
-              className="secondSection-addReview-button"
-              type="button"
-              value="Review"
-              onClick={saveReview}
-            ></input>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
-};
+    );
+}
 
 export default MovieTrailer;

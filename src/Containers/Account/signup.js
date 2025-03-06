@@ -112,7 +112,14 @@ const SignUp = () => {
     navigate("/"); // Goes back to the previous page
   };
 
+  const closePage = () => {
+    navigate(-2); // Goes back to the previous page
+  }
+
+  
+
   return (
+<<<<<<< HEAD
     <div className="wrapper__create">
       <div className="create-box">
         <button
@@ -162,6 +169,25 @@ const SignUp = () => {
           ></input>
         </form>
       </div>
+=======
+    <div className='wrapper__create'>
+        
+        <div className='create-box'>
+
+        <button className='close-btn' onClick={closePage}>X</button>
+            <form>
+                <label className='login-box-label'>SIGN UP</label>
+                <input required className='login-box-userInputs' type='text' placeholder='Enter your name' id='name'></input>
+                {/* <input className='login-box-userInputs' type='text' placeholder='Enter your last name'></input> */}
+                <input required className='login-box-userInputs' type='text' placeholder='Enter your email' id='email' value={email} onChange={event => setEmail(event.target.value)}></input>
+                <input className='login-box-userInputs' type='password' placeholder='Enter your password' id='password'></input>
+                {/* <label className='login-box-profileText'>Upload a profile picture</label> */}
+                {/* <input className='login-box-userInputs' type='file' /> */}
+                <label required className='login-box-linkToPage' onClick={() => {navigate('/login')}}>👉 Are you a existing user? Login here...</label>
+                <input className='login-box-CreateButton' type='button' value='Create Account' onClick={userValidation}></input>
+            </form>
+        </div>
+>>>>>>> 27c7a8099d01ead33fa55841bcd8b08004baefe3
     </div>
   );
 };

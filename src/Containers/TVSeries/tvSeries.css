@@ -8,6 +8,7 @@
 }
 
 .wrapper__tvSeries {
+<<<<<<< HEAD
   background-image: linear-gradient(
     120deg,
     rgb(1, 2, 14),
@@ -40,6 +41,38 @@
   justify-content: center;
   border-radius: 15px; /* Rounded borders */
   overflow: hidden;
+=======
+	background-image: linear-gradient(120deg,
+		rgb(1, 2, 14),
+		rgb(9, 8, 66),
+		rgb(1, 2, 14));
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: fixed;
+	padding-bottom: 100px; /* Increased bottom padding */
+}
+
+.tvSeries-heading {
+	font-size: 2rem;
+	font-weight: 600;
+	color: var(--color-blue);
+	margin-top: 100px;
+	margin-bottom: 60px;
+}
+
+.tvSeries_scroll-wrapper {
+	width: 95%;
+	height: 350px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 15px; /* Rounded borders */
+	overflow: hidden;
+>>>>>>> 27c7a8099d01ead33fa55841bcd8b08004baefe3
 }
 
 .tvSeries_scroll-wrapper > div:nth-child(2) {
@@ -63,6 +96,7 @@
 }
 
 .scroll-content {
+<<<<<<< HEAD
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -70,6 +104,15 @@
   display: flex;
   align-items: center;
   border-radius: 15px; /* Rounded borders */
+=======
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	overflow: scroll;
+	display: flex;
+	align-items: center;
+	border-radius: 15px; /* Rounded borders */
+>>>>>>> 27c7a8099d01ead33fa55841bcd8b08004baefe3
 }
 
 .scroll-content::-webkit-scrollbar {
@@ -77,6 +120,7 @@
 }
 
 .scroll-content > img {
+<<<<<<< HEAD
   height: 90%;
   width: auto;
   margin: 0 10px;
@@ -94,6 +138,25 @@
   display: block;
   margin-bottom: 50px;
   border-radius: 10px; /* Rounded borders */
+=======
+	height: 90%;
+	width: auto;
+	margin: 0 10px;
+	transition: 0.5s;
+	border-radius: 10px; /* Rounded borders for images */
+}
+
+.scroll-content > img:hover {
+	scale: 110%;
+	opacity: 1;
+	box-shadow: 0 0 20px var(--color-blue);
+}
+
+.tvSeries-trailer {
+	display: block;
+	margin-bottom: 50px;
+	border-radius: 10px; /* Rounded borders */
+>>>>>>> 27c7a8099d01ead33fa55841bcd8b08004baefe3
 }
 
 @keyframes fadein {
