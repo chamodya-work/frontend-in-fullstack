@@ -20,7 +20,7 @@ const TVSeriesTrailer = () => {
                 console.log('Error fetching movie data:', error);
             }
         };
-
+        // Fetch reviews related to the series
         const fetchReviews = async () => {
             try {
                 const result = await fetch(`http://localhost:8081/getReviewByContent/${series_id}`);
@@ -46,7 +46,7 @@ const TVSeriesTrailer = () => {
             }
         };
 
-        fetchData();
+        fetchData();// Fetch series details
         fetchReviews();
 
         setLoggedUser(JSON.parse(localStorage.getItem("loggedUser")));
@@ -75,7 +75,7 @@ const TVSeriesTrailer = () => {
               window.location.reload();
         }
     }
-
+      // Function to format the review date
     const formatDate = (dateString) => {
         const options = { year: "numeric", month: "long", day: "numeric"}
         return new Date(dateString).toLocaleDateString(undefined, options);

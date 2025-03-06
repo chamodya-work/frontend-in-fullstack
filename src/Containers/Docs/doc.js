@@ -17,7 +17,7 @@ const Docs = () => {
                 console.log(error);
             }
         }
-        fetchData();
+        fetchData(); // Call the function to fetch data
     }, []);
     return(
         <div className="wrapper__doc">

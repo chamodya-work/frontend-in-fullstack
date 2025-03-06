@@ -116,7 +116,7 @@ const DocTrailer = () => {
                 <h2>{userMap[review.user_id]?.name || "Unknown User"}</h2>
                 <p>"{review.reviewText}"</p>
                 <h4>{formatDate(review.timeStamp)}</h4>
-{/*
+{
                 {loggedUser?.guser_id === review.user_id && (
                   <button
                     className="delete-review-button"
@@ -125,7 +125,7 @@ const DocTrailer = () => {
                     Delete
                   </button>
                 )}
-                  */} 
+                  } 
 
               </div>
             ))}
