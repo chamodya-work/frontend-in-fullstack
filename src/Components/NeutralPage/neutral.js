@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./neutral.css";
+import PreventBackButton from "../PreventBackButton";
 
 const Neutral = () => {
   const [movies, setMovies] = useState([]);
@@ -49,6 +50,9 @@ const Neutral = () => {
     };
   }, []);
 
+
+  
+
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -83,6 +87,8 @@ const Neutral = () => {
 
   return (
     <div>
+      <PreventBackButton />
+
       {/* Header Section */}
       <header className="header">
         <div className="logo">
@@ -97,7 +103,10 @@ const Neutral = () => {
       {/* Hero Section */}
       <div className="hero">
         <div className="hero-overlay"></div>
-        <h1>FilmFlix <br/>Stream Anywhere!</h1>
+        <h1>
+          FilmFlix <br />
+          Stream Anywhere!
+        </h1>
         <p>
           Unlimited movies and shows, all at your fingertips. <br /> Sign up now
           and start watching instantly!
