@@ -15,13 +15,14 @@ const DocTrailer = () => {
         const fetchData = async () => {
             try {
                 const result = await fetch(`http://localhost:8081/getDocById/${doc_id}`);
+                //this is for get id using the back end end point 
                 const docData = await result.json();
                 setDoc(docData);
             } catch (error) {
                 console.log('Error fetching movie data:', error);
             }
         };
-        
+
         const fetchReviews = async () => {
             try {
                 const result = await fetch(`http://localhost:8081/getReviewByContent/${doc_id}`);
@@ -57,28 +58,28 @@ const DocTrailer = () => {
     const saveReview = () => {
         const reviewInput = document.getElementById("reviewInput").value;
 
-        if(reviewInput === null){
+        if (reviewInput === null) {
             alert("Please enter a review first...!");
         }
-        else{
-            fetch('http://localhost:8081/addReview',{
+        else {
+            fetch('http://localhost:8081/addReview', {
                 method: 'POST',
                 headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                  contentId: doc_id,
-                  user_id: loggedUser.guser_id,
-                  reviewText: reviewInput,
+                    contentId: doc_id,
+                    user_id: loggedUser.guser_id,
+                    reviewText: reviewInput,
                 })
-              })
-              window.location.reload();
+            })
+            window.location.reload();
         }
     }
 
     const formatDate = (dateString) => {
-        const options = { year: "numeric", month: "long", day: "numeric"}
+        const options = { year: "numeric", month: "long", day: "numeric" }
         return new Date(dateString).toLocaleDateString(undefined, options);
     }
 
@@ -92,10 +93,10 @@ const DocTrailer = () => {
                     </div>
                     <div className="firstSection-middle"></div>
                     <div className="firstSection-right">
-                        <img src={docImages[doc.backdrop_path]} alt="Back Drop"/>
+                        <img src={docImages[doc.backdrop_path]} alt="Back Drop" />
                         <div>
                             <p className="firstSection-right-topic">{doc.name}</p>
-                            <p className="firstSection-right-overview">{doc.overview}</p> 
+                            <p className="firstSection-right-overview">{doc.overview}</p>
                         </div>
                     </div>
                 </div>
