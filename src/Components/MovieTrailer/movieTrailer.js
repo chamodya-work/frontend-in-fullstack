@@ -62,25 +62,28 @@ const MovieTrailer = () => {
   }, [movie_id]);
 
   const saveReview = () => {
-    const reviewInput = document.getElementById("reviewInput").value;
+    const reviewInput = document.getElementById("reviewInput").value.trim(); // Trim whitespace
 
-    if (reviewInput === null) {
+    if (!reviewInput) {
       alert("Please enter a review first...!");
-    } else {
-      fetch("http://localhost:8081/addReview", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contentId: movie_id,
-          user_id: loggedUser?.guser_id,
-          reviewText: reviewInput,
-        }),
-      });
-      window.location.reload();
+      return; // Prevent the submission if the input is empty
     }
+
+    // Proceed with submitting the review
+    fetch("http://localhost:8081/addReview", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        contentId: movie_id,
+        user_id: loggedUser.guser_id,
+        reviewText: reviewInput,
+      }),
+    })
+      .then(() => window.location.reload()) // Reload after submission
+      .catch((error) => console.log("Error submitting review:", error));
   };
 
   const deleteReview = (reviewId) => {
@@ -135,6 +138,7 @@ const MovieTrailer = () => {
                 <h2>{userMap[review.user_id]?.name || "Unknown User"}</h2>
                 <p>"{review.reviewText}"</p>
                 <h4>{formatDate(review.timeStamp)}</h4>
+
                 {loggedUser?.guser_id === review.user_id && (
                   <button
                     className="delete-review-button"

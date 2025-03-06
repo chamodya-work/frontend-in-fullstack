@@ -54,27 +54,30 @@ const TVSeriesTrailer = () => {
     }, [series_id]);
 
     const saveReview = () => {
-        const reviewInput = document.getElementById("reviewInput").value;
+      const reviewInput = document.getElementById("reviewInput").value.trim(); // Trim whitespace
 
-        if(reviewInput === null){
-            alert("Please enter a review first...!");
-        }
-        else{
-            fetch('http://localhost:8081/addReview',{
-                method: 'POST',
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  contentId: series_id,
-                  user_id: loggedUser?.guser_id,
-                  reviewText: reviewInput,
-                })
-              })
-              window.location.reload();
-        }
-    }
+      if (!reviewInput) {
+        alert("Please enter a review first...!");
+        return; // Prevent the submission if the input is empty
+      }
+
+      // Proceed with submitting the review
+      fetch("http://localhost:8081/addReview", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contentId: series_id,
+          user_id: loggedUser.guser_id,
+          reviewText: reviewInput,
+        }),
+      })
+        .then(() => window.location.reload()) // Reload after submission
+        .catch((error) => console.log("Error submitting review:", error));
+    };
+
 
 
     const deleteReview = (reviewId) => {
