@@ -12,6 +12,8 @@ import Neutral from "./Components/NeutralPage/neutral.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./Components/ScrollToTop.js";
 
+import PreventBackButton from "./Components/PreventBackButton";
+
 
 
 function App() {
@@ -35,7 +37,17 @@ function App() {
           <Route path="/docTrailer/:doc_id" element={<DocTrailer />} />
           <Route path="/addContent" element={<Content />} />
           <Route path="/" element={<Neutral />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <PreventBackButton /> {/* Prevent back navigation */}
+                <Neutral />
+              </>
+            }
+          />
         </Routes>
+
       </Router>
     </div>
   );
