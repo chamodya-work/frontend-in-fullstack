@@ -3,7 +3,8 @@ const images = {
     'riseOfRed': require("../assets/movie/backdrop/riseOfRed.jpg"),
     'furiosa': require("../assets/movie/backdrop/furiosa.jpg"),
     'planetApes': require("../assets/movie/backdrop/planetApes.jpg"),
-    'godzilla': require("../assets/movie/backdrop/godzilla.jpg")    
+    'godzilla': require("../assets/movie/backdrop/godzilla.jpg"),
+    'howToTrainYourDragon': require("../assets/movie/backdrop/howToTrainYourDragon.jpg"),
 };
 
 export default images;

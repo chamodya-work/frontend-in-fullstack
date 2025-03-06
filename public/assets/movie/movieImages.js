@@ -8,7 +8,7 @@ const movieImages = {
     'riseOfRed': require("./backdrop/riseOfRed.jpg"),
     'furiosa': require("./backdrop/furiosa.jpg"),
     'planetApes': require("./backdrop/planetApes.jpg"),
-    'godzilla': require("./backdrop/godzilla.jpg") 
+    'godzilla': require("./backdrop/godzilla.jpg")
 };
 
 export default movieImages;
