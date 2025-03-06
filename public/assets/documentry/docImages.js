@@ -6,9 +6,9 @@ const docImages = {
     'servantPoster': require("./poster/servant.jpg"),
     'encanto': require("./backdrop/encanto.jpg"),
     'howRob': require("./backdrop/howRob.jpg"),
-    'ideaMan': require("./backdrop/ideaMan.jpg"),
+    'ideaMan': require("./backdrop/ideaManBackdrop.jpg"),
     'potter': require("./backdrop/potter.jpg"),
-    'servant': require("./backdrop/servant.jpg") 
+    'servant': require("./backdrop/servant.jpg")
 };
 
 export default docImages;

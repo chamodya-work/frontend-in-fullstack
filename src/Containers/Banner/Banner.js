@@ -1,82 +1,63 @@
-import React, { useEffect, useState } from 'react';
-import './Banner.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faPlus } from '@fortawesome/free-solid-svg-icons';
-import images from '../../assets/bannerImages';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import "./Banner.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
-
-  const [movie, setMovie] = useState('');
-  const [users, setUsers] = useState('');
+  const [movie, setMovie] = useState(null);
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
-
-  console.log(localStorage);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch('http://localhost:8081/getAllMovies');
-        const jsonResult = await result.json();
+        const [moviesRes, usersRes] = await Promise.all([
+          fetch("http://localhost:8081/getAllMovies"),
+          fetch("http://localhost:8081/getAllGUser"),
+        ]);
 
-        const fetchedMovie = jsonResult[
-          Math.floor(Math.random() * jsonResult.length)
-        ]
+        const movies = await moviesRes.json();
+        const users = await usersRes.json();
 
-        setMovie(fetchedMovie);
+        const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+        setMovie(randomMovie);
+        setUsers(users);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-
-    const fetchUsers = async () => {
-      try {
-        const result = await fetch('http://localhost:8081/getAllGUser');
-        setUsers(await result.json());
-
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    };
 
     fetchData();
-    fetchUsers();
   }, []);
-
 
   useEffect(() => {
     if (users.length > 0) {
-      let newUser = localStorage.getItem("userEmail");
-      users?.map(user => {
-        if (newUser === user.email) {
-          let loggedUser = JSON.stringify(user);
-          localStorage.setItem("loggedUser", loggedUser);
-          console.log(localStorage);
+      const newUserEmail = localStorage.getItem("userEmail");
+      users.forEach((user) => {
+        if (newUserEmail === user.email) {
+          localStorage.setItem("loggedUser", JSON.stringify(user));
         }
       });
     }
   }, [users]);
 
-  console.log(movie);
-
   return (
-    <div className='banner_wrapper'>
-      <div className='banner__background'
+    <div className="banner_wrapper">
+      <div
+        className="banner__background"
         style={{
           backgroundSize: "cover",
-          backgroundImage: `url(
-              ${movie?.backdrop_path}
-            )`,
+          backgroundImage: `url(${movie?.backdrop_path})`,
           backgroundPosition: "center center",
         }}
       />
 
-      <div className='banner__leftGradient' />
-      <div className='banner__topGradient' />
-      <div className='banner__bottomGradient' />
+      <div className="banner__leftGradient" />
+      <div className="banner__topGradient" />
+      <div className="banner__bottomGradient" />
 
-      <div className='banner__content'>
-        <img src=""></img>
+      <div className="banner__content">
         <h4>Duration: {movie?.watch_time} min</h4>
         <h3>{movie?.vote_average}</h3>
         <div>
@@ -87,13 +68,24 @@ const Banner = () => {
         <h2>{movie?.name}</h2>
         <p>{movie?.overview}</p>
 
-        <div className='banner__content-buttons'>
-          <button onClick={() => { navigate(`/movieTrailer/${movie?.movie_id}`) }} className='banner__content-buttons_watchButton buttons'><FontAwesomeIcon className="icon" icon={faPlay} />WATCH</button>
-          <button className='banner__content-buttons_addListButton buttons'><FontAwesomeIcon className="icon" icon={faPlus} />ADD LIST</button>
+        <div className="banner__content-buttons">
+          <button
+            onClick={() => {
+              navigate(`/movieTrailer/${movie?.movie_id}`);
+            }}
+            className="banner__content-buttons_watchButton buttons"
+          >
+            <FontAwesomeIcon className="icon" icon={faPlay} />
+            WATCH
+          </button>
+          <button className="banner__content-buttons_addListButton buttons">
+            <FontAwesomeIcon className="icon" icon={faPlus} />
+            ADD LIST
+          </button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Banner
+export default Banner;

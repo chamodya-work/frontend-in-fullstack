@@ -2,86 +2,108 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import './movieTrailer.css';
 import { useParams } from 'react-router-dom';
-
+import movieImages from "../../assets/movie/movieImages";
 
 const MovieTrailer = () => {
-    const { movie_id } = useParams();
-    const [movie, setMovie] = useState({});
-    const [reviews, setReviews] = useState([]);
-    const [userMap, setUserMap] = useState({});
-    const [loggedUser, setLoggedUser] = useState();
+  const { movie_id } = useParams();
+  const [movie, setMovie] = useState({});
+  const [reviews, setReviews] = useState([]);
+  const [userMap, setUserMap] = useState({});
+  const [loggedUser, setLoggedUser] = useState();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const result = await fetch(`http://localhost:8081/getMovieById/${movie_id}`);
-                const movieData = await result.json();
-                setMovie(movieData);
-            } catch (error) {
-                console.log('Error fetching movie data:', error);
-            }
-        };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await fetch(
+          `http://localhost:8081/getMovieById/${movie_id}`
+        );
+        const movieData = await result.json();
+        setMovie(movieData);
+      } catch (error) {
+        console.log("Error fetching movie data:", error);
+      }
+    };
 
-        const fetchReviews = async () => {
-            try {
-                const result = await fetch(`http://localhost:8081/getReviewByContent/${movie_id}`);
-                const reviewResult = await result.json();
-                setReviews(reviewResult);
+    const fetchReviews = async () => {
+      try {
+        const result = await fetch(
+          `http://localhost:8081/getReviewByContent/${movie_id}`
+        );
+        const reviewResult = await result.json();
+        setReviews(reviewResult);
 
-                const userFetches = reviewResult.map(async (review) => {
-                    try {
-                        const userResult = await fetch(`http://localhost:8081/getGUserById/${review.user_id}`);
-                        const fetchedUser = await userResult.json();
-                        return { [review.user_id]: fetchedUser };
-                    } catch (error) {
-                        console.log(`Error fetching user ${review.user_id}:`, error);
-                        return { [review.user_id]: null };
-                    }
-                });
+        const userFetches = reviewResult.map(async (review) => {
+          try {
+            const userResult = await fetch(
+              `http://localhost:8081/getGUserById/${review.user_id}`
+            );
+            const fetchedUser = await userResult.json();
+            return { [review.user_id]: fetchedUser };
+          } catch (error) {
+            console.log(`Error fetching user ${review.user_id}:`, error);
+            return { [review.user_id]: null };
+          }
+        });
 
-                const userResults = await Promise.all(userFetches);
-                const userMap = userResults.reduce((acc, user) => ({ ...acc, ...user }), {});
-                setUserMap(userMap);
-            } catch (error) {
-                console.log('Error fetching reviews:', error);
-            }
-        };
+        const userResults = await Promise.all(userFetches);
+        const userMap = userResults.reduce(
+          (acc, user) => ({ ...acc, ...user }),
+          {}
+        );
+        setUserMap(userMap);
+      } catch (error) {
+        console.log("Error fetching reviews:", error);
+      }
+    };
 
-        fetchData();
-        fetchReviews();
+    fetchData();
+    fetchReviews();
 
-        setLoggedUser(JSON.parse(localStorage.getItem("loggedUser")));
+    setLoggedUser(JSON.parse(localStorage.getItem("loggedUser")));
+  }, [movie_id]);
 
-    }, [movie_id]);
+  const saveReview = () => {
+    const reviewInput = document.getElementById("reviewInput").value.trim(); // Trim whitespace
 
-    const saveReview = () => {
-        const reviewInput = document.getElementById("reviewInput").value;
-
-        if (reviewInput === null) {
-            alert("Please enter a review first...!");
-        }
-        else {
-            fetch('http://localhost:8081/addReview', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    contentId: movie_id,
-                    user_id: loggedUser?.guser_id,
-                    reviewText: reviewInput,
-                })
-            })
-            window.location.reload();
-        }
+    if (!reviewInput) {
+      alert("Please enter a review first...!");
+      return; // Prevent the submission if the input is empty
     }
 
-    const formatDate = (dateString) => {
-        const options = { year: "numeric", month: "long", day: "numeric" }
-        return new Date(dateString).toLocaleDateString(undefined, options);
-    }
+    // Proceed with submitting the review
+    fetch("http://localhost:8081/addReview", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        contentId: movie_id,
+        user_id: loggedUser.guser_id,
+        reviewText: reviewInput,
+      }),
+    })
+      .then(() => window.location.reload()) // Reload after submission
+      .catch((error) => console.log("Error submitting review:", error));
+  };
 
+  const deleteReview = (reviewId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this review?"
+    );
+    if (confirmDelete) {
+      fetch(`http://localhost:8081/deleteReview/${reviewId}`, {
+        method: "DELETE",
+      })
+        .then(() => window.location.reload())
+        .catch((error) => console.log("Error deleting review:", error));
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
 
     return (
         <div className="wrapper__trailer">
@@ -90,8 +112,8 @@ const MovieTrailer = () => {
                 <div className="trailer-box_firstSection">
                     <div className="firstSection-left">
                         <iframe
-                            width="800"
-                            height="450"
+                            width="550"
+                            height="320"
                             src={movie.trailer}
                             title="YouTube video player"
                             frameBorder="0"
@@ -102,7 +124,7 @@ const MovieTrailer = () => {
                     </div>
                     <div className="firstSection-middle"></div>
                     <div className="firstSection-right">
-                       <img src={movie.backdrop_path} alt="Backdrop" />
+                        <img src={movieImages[movie.backdrop_path]} alt="Back Drop" />
                         <div>
                             <p className="firstSection-right-topic">{movie.name}</p>
                             <p className="firstSection-right-overview">{movie.overview}</p>
